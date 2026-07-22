@@ -151,9 +151,20 @@ h4 {
 
 /* ─── Utilities ────────────────────────────────────────── */
 .section-padding {
-  padding-top: clamp(4rem, 8vw, 7rem);
-  padding-bottom: clamp(4rem, 8vw, 7rem);
+  padding-top: clamp(2.5rem, 8vw, 7rem);
+  padding-bottom: clamp(2.5rem, 8vw, 7rem);
 }
+
+/* Hide scrollbar for jump nav */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+
 
 .section-alt {
   background-color: var(--color-off-white);

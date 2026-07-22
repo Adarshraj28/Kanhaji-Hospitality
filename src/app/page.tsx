@@ -9,21 +9,25 @@ import CertificationsSection from "@/components/sections/CertificationsSection";
 import ComplianceSection from "@/components/sections/ComplianceSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import CTASection from "@/components/sections/CTASection";
+import MobileJumpNav from "@/components/ui/MobileJumpNav";
 
 export default function Home() {
   return (
     <>
+      <div className="lg:pb-0 pb-14">
       <HeroSection />
-      <WhyChooseUs />
+      <div id="why-us"><WhyChooseUs /></div>
       <PhotoBanner />
       <SafetyChecksSection />
-      <ServicesSection />
-      <IndustriesSection />
-      <ClientsSection />
-      <CertificationsSection />
+      <div id="services"><ServicesSection /></div>
+      <div id="industries"><IndustriesSection /></div>
+      <div id="clients"><ClientsSection /></div>
+      <div id="certifications"><CertificationsSection /></div>
       <ComplianceSection />
-      <TestimonialsSection />
-      <CTASection />
+      <div id="testimonials"><TestimonialsSection /></div>
+      <div id="cta"><CTASection /></div>
+      </div>
+      <MobileJumpNav />
     </>
   );
 }
