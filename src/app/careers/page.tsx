@@ -26,6 +26,7 @@ export default function CareersPage() {
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const toggleJob = (id: string) => {
     setExpandedJob(expandedJob === id ? null : id);
@@ -302,9 +303,29 @@ export default function CareersPage() {
                     Apply Now
                   </h3>
                   <form
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
-                      setSubmitted(true);
+                      setSubmitting(true);
+                      try {
+                        const form = e.currentTarget;
+                        const formData = new FormData(form);
+                        const { supabase } = await import("@/lib/supabase");
+                        const { error } = await supabase.from("applications").insert([
+                          {
+                            full_name: formData.get("fullName"),
+                            email: formData.get("email"),
+                            phone: formData.get("phone"),
+                            position: formData.get("position"),
+                            cover_letter: formData.get("message"),
+                          },
+                        ]);
+                        if (error) throw error;
+                        setSubmitted(true);
+                      } catch (err) {
+                        console.error("Failed to submit application:", err);
+                        alert("Something went wrong. Please try again.");
+                      }
+                      setSubmitting(false);
                     }}
                     className="space-y-5"
                   >
@@ -312,9 +333,9 @@ export default function CareersPage() {
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">
                           Full Name *
-                        </label>
-                        <input
+                        </label>                          <input
                           type="text"
+                          name="fullName"
                           required
                           placeholder="Your full name"
                           className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:ring-2 focus:ring-[#d48c2c]/30 focus:border-[#d48c2c] outline-none"
@@ -323,9 +344,9 @@ export default function CareersPage() {
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">
                           Email Address *
-                        </label>
-                        <input
+                        </label>                          <input
                           type="email"
+                          name="email"
                           required
                           placeholder="email@example.com"
                           className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:ring-2 focus:ring-[#d48c2c]/30 focus:border-[#d48c2c] outline-none"
@@ -334,9 +355,9 @@ export default function CareersPage() {
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">
                           Phone Number *
-                        </label>
-                        <input
+                        </label>                          <input
                           type="tel"
+                          name="phone"
                           required
                           placeholder="10-digit mobile number"
                           className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:ring-2 focus:ring-[#d48c2c]/30 focus:border-[#d48c2c] outline-none"
@@ -345,8 +366,7 @@ export default function CareersPage() {
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">
                           Position Applying For
-                        </label>
-                        <select className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:ring-2 focus:ring-[#d48c2c]/30 focus:border-[#d48c2c] outline-none">
+                        </label>                          <select name="position" className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:ring-2 focus:ring-[#d48c2c]/30 focus:border-[#d48c2c] outline-none">
                           <option value="">Select position</option>
                           {JOB_OPENINGS.map((job) => (
                             <option key={job.id} value={job.id}>
@@ -363,6 +383,7 @@ export default function CareersPage() {
                         Cover Letter / Message
                       </label>
                       <textarea
+                        name="message"
                         rows={4}
                         placeholder="Tell us about yourself and why you want to join Kanhaji Hospitality..."
                         className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:ring-2 focus:ring-[#d48c2c]/30 focus:border-[#d48c2c] outline-none"
@@ -384,9 +405,9 @@ export default function CareersPage() {
                       </div>
                     </div>
 
-                    <Button type="submit" variant="secondary" size="lg">
-                      Submit Application
-                      <Send className="h-4 w-4" />
+                    <Button type="submit" variant="secondary" size="lg" loading={submitting} disabled={submitting}>
+                      {submitting ? "Submitting..." : "Submit Application"}
+                      {!submitting && <Send className="h-4 w-4" />}
                     </Button>
                   </form>
                 </Card>

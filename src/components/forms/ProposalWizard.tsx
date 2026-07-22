@@ -57,9 +57,33 @@ export default function ProposalWizard() {
     if (step > 0) setStep(step - 1);
   };
 
+  const [submitting, setSubmitting] = useState(false);
+
   const handleSubmit = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const { supabase } = await import("@/lib/supabase");
+      const { error } = await supabase.from("proposals").insert([
+        {
+          institution_type: data.institutionType,
+          city: data.location.city,
+          state: data.location.state,
+          people_count: data.peopleCount,
+          meal_types: data.mealTypes,
+          frequency: data.frequency,
+          budget: data.budget,
+          contact_name: data.contact.name,
+          contact_phone: data.contact.phone,
+          contact_email: data.contact.email,
+        },
+      ]);
+      if (error) throw error;
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Failed to submit proposal:", err);
+      alert("Something went wrong. Please try again or email us directly.");
+    }
+    setSubmitting(false);
   };
 
   if (submitted) {
@@ -142,6 +166,7 @@ export default function ProposalWizard() {
             update={updateData}
             onSubmit={handleSubmit}
             onPrev={handlePrev}
+            submitting={submitting}
           />
         );
       default:
@@ -463,7 +488,7 @@ function StepBudget({ data, update, onNext, onPrev }: StepProps) {
   );
 }
 
-function StepContact({ data, update, onSubmit, onPrev }: any) {
+function StepContact({ data, update, onSubmit, onPrev, submitting }: any) {
   return (
     <div>
       <h3 className="text-2xl font-bold text-[#1c1512] mb-2">
@@ -520,8 +545,9 @@ function StepContact({ data, update, onSubmit, onPrev }: any) {
         <button onClick={onPrev} className="px-6 py-2.5 text-gray-600 hover:text-gray-800 font-medium transition-colors">
           Back
         </button>
-        <Button onClick={onSubmit} variant="secondary" size="lg">
-          Submit Proposal Request <ArrowRight className="h-4 w-4" />
+        <Button onClick={onSubmit} variant="secondary" size="lg" loading={submitting} disabled={submitting}>
+          {submitting ? "Submitting..." : "Submit Proposal Request"}
+          {!submitting && <ArrowRight className="h-4 w-4" />}
         </Button>
       </div>
     </div>

@@ -98,10 +98,33 @@ export default function LeadForm({ variant = "standard" }: LeadFormProps) {
     if (!validate()) return;
 
     setSubmitting(true);
-    // Simulate submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const { supabase } = await import("@/lib/supabase");
+      const { error } = await supabase.from("leads").insert([
+        {
+          organization_name: formData.organizationName,
+          contact_person: formData.contactPerson,
+          designation: formData.designation,
+          phone: formData.phone,
+          email: formData.email,
+          city: formData.city,
+          state: formData.state,
+          institution_type: formData.institutionType,
+          number_of_meals: formData.numberOfMeals,
+          meal_type: formData.mealType,
+          budget: formData.budget,
+          expected_start_date: formData.expectedStartDate,
+          message: formData.message,
+          preferred_contact_time: formData.preferredContactTime,
+        },
+      ]);
+      if (error) throw error;
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Failed to submit lead:", err);
+      alert("Something went wrong. Please try again or email us directly.");
+    }
     setSubmitting(false);
-    setSubmitted(true);
   };
 
   if (submitted) {
