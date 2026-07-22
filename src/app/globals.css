@@ -159,6 +159,33 @@ h4 {
   background-color: var(--color-off-white);
 }
 
+/* ─── Mobile Touch Optimizations ──────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets on mobile */
+  a, button, [role="button"] {
+    min-height: 44px;
+  }
+  
+  /* Remove hover states on touch devices, they persist annoyingly */
+  .group:hover .group-hover\:scale-105,
+  .group:hover .group-hover\:scale-110 {
+    transform: none;
+  }
+}
+
+/* Safe area padding for modern mobile devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .container-custom {
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+  }
+}
+
+/* Prevent text size adjustment on mobile orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 /* ─── Subtle Animations ────────────────────────────────── */
 @keyframes fadeUp {
   from {

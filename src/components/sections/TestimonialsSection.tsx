@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
@@ -10,7 +10,26 @@ import { cn } from "@/lib/utils";
 
 export default function TestimonialsSection() {
   const [current, setCurrent] = useState(0);
-  const perPage = 3;
+  // Responsive per-page: 1 on mobile, 2 on tablet (md), 3 on desktop (lg)
+  const [perPage, setPerPage] = useState(3);
+
+  useEffect(() => {
+    const updatePerPage = () => {
+      if (window.innerWidth < 768) setPerPage(1);
+      else if (window.innerWidth < 1024) setPerPage(2);
+      else setPerPage(3);
+    };
+    updatePerPage();
+    window.addEventListener("resize", updatePerPage);
+    return () => window.removeEventListener("resize", updatePerPage);
+  }, []);
+
+  // Clamp current page when perPage changes (e.g., resize from mobile to desktop)
+  useEffect(() => {
+    const maxPage = Math.ceil(TESTIMONIALS.length / perPage) - 1;
+    setCurrent(prev => Math.min(prev, Math.max(0, maxPage)));
+  }, [perPage]);
+
   const total = Math.ceil(TESTIMONIALS.length / perPage);
   const visible = TESTIMONIALS.slice(current * perPage, current * perPage + perPage);
 

@@ -32,14 +32,14 @@ export default function WhyChooseUs() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {WHY_CHOOSE_US.map((item, index) => (
             <AnimatedSection key={item.title} delay={index * 0.06}>
-              <div className="bg-white rounded-lg border border-[#f3efe7] p-6 text-center h-full hover:shadow-md hover:border-[#e8d5c0] transition-all duration-300 group">
-                <div className={`w-12 h-12 rounded-lg ${ICON_COLORS[index % ICON_COLORS.length].bg} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <Icon name={item.icon} className={ICON_COLORS[index % ICON_COLORS.length].text} size={24} />
+              <div className="bg-white rounded-lg border border-[#f3efe7] p-4 md:p-6 text-center h-full hover:shadow-md hover:border-[#e8d5c0] transition-all duration-300 group">
+                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-lg ${ICON_COLORS[index % ICON_COLORS.length].bg} flex items-center justify-center mx-auto mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <Icon name={item.icon} className={ICON_COLORS[index % ICON_COLORS.length].text} size={20} />
                 </div>
-                <h3 className="text-base font-semibold text-[#1c1512] mb-2">
+                <h3 className="text-sm md:text-base font-semibold text-[#1c1512] mb-1.5 md:mb-2">
                   {item.title}
                 </h3>
-                <p className="text-sm text-[#8a7f72] leading-relaxed">
+                <p className="text-xs md:text-sm text-[#8a7f72] leading-relaxed">
                   {item.description}
                 </p>
               </div>

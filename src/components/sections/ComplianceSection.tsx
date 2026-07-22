@@ -76,16 +76,16 @@ export default function ComplianceSection() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {complianceItems.map((item, index) => (
             <AnimatedSection key={item.title} delay={index * 0.07}>
-              <div className="bg-white rounded-lg border border-[#f3efe7] p-5 text-center h-full hover:shadow-md hover:border-[#e8d5c0] transition-all duration-300 group">
+              <div className="bg-white rounded-lg border border-[#f3efe7] p-4 md:p-5 text-center h-full hover:shadow-md hover:border-[#e8d5c0] transition-all duration-300 group">
                 <div
-                  className={`w-12 h-12 rounded-lg ${item.bg} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-10 h-10 md:w-12 md:h-12 rounded-lg ${item.bg} flex items-center justify-center mx-auto mb-2 md:mb-3 group-hover:scale-110 transition-transform duration-300`}
                 >
-                  <item.icon className={`w-6 h-6 ${item.color}`} />
+                  <item.icon className={`w-5 h-5 md:w-6 md:h-6 ${item.color}`} />
                 </div>
-                <h3 className="text-sm font-bold text-[#1c1512] mb-2">
+                <h3 className="text-xs md:text-sm font-bold text-[#1c1512] mb-1.5 md:mb-2">
                   {item.title}
                 </h3>
-                <p className="text-xs text-[#8a7f72] leading-relaxed">
+                <p className="text-[10px] md:text-xs text-[#8a7f72] leading-relaxed">
                   {item.description}
                 </p>
               </div>
