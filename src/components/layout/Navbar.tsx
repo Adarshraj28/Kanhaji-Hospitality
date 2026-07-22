@@ -221,7 +221,7 @@ export default function Navbar() {
       {/* Mobile Overlay */}
       <div
         className={cn(
-          "fixed inset-0 bg-black/40 z-40 lg:hidden transition-opacity duration-300",
+          "fixed inset-0 bg-black/60 z-[60] lg:hidden transition-opacity duration-300",
           mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
         onClick={() => setMobileOpen(false)}
