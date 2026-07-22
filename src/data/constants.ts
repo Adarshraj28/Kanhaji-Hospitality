@@ -22,7 +22,7 @@ export const COMPANY = {
   },
   emergencyContact: "+91 73910 71017",
   founded: 2018,
-  employees: "500+",
+  employees: "200+",
   social: {
     linkedin: "https://www.linkedin.com/in/kanhaji-hospitality-8a63652b5/",
     facebook: "https://facebook.com/kanhajihospitality",
@@ -67,8 +67,8 @@ export const STATS = [
   { label: "Years of Experience", value: "8+" },
   { label: "Trusted Partners", value: "50+" },
   { label: "Cities Served", value: "10+" },
-  { label: "Total Meals Served", value: "15Cr+" },
-  { label: "Team Members", value: "500+" },
+  { label: "Total Meals Served", value: "15Lakh+" },
+  { label: "Team Members", value: "200+" },
 ];
 
 /* ─── Why Choose Us ────────────────────────────────────── */

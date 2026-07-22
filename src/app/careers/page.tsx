@@ -54,7 +54,7 @@ export default function CareersPage() {
           <AnimatedSection>
             <SectionHeading
               title="Why Join Kanhaji Hospitality?"
-              subtitle="We believe in nurturing talent and providing opportunities for growth. Our team of 500+ professionals is the backbone of our success, and we are always looking for passionate individuals to join our family."
+              subtitle="We believe in nurturing talent and providing opportunities for growth. Our team of 200+ professionals is the backbone of our success, and we are always looking for passionate individuals to join our family."
             />
           </AnimatedSection>
           
@@ -67,7 +67,7 @@ export default function CareersPage() {
               },
               {
                 title: "Job Security",
-                desc: "Stable employment with a growing company that has 200+ institutional clients",
+                desc: "Stable employment with a growing company trusted by 50+ institutional partners",
                 icon: Briefcase,
               },
               {
@@ -77,7 +77,7 @@ export default function CareersPage() {
               },
               {
                 title: "Pan-India Presence",
-                desc: "Opportunity to work across 25+ cities with diverse institutional environments",
+                desc: "Opportunity to work across 10+ cities with diverse institutional environments",
                 icon: MapPin,
               },
             ].map((item) => (

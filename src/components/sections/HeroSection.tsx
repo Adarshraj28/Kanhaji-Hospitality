@@ -113,11 +113,11 @@ export default function HeroSection() {
                   {/* Stats mini card */}
                   <div className="flex gap-3">
                     <div className="flex-1 p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/10">
-                      <div className="text-white/90 text-base font-bold">500+</div>
+                      <div className="text-white/90 text-base font-bold">200+</div>
                       <div className="text-white/60 text-xs">Staff</div>
                     </div>
                     <div className="flex-1 p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/10">
-                      <div className="text-white/90 text-base font-bold">15Cr+</div>
+                      <div className="text-white/90 text-base font-bold">15Lakh+</div>
                       <div className="text-white/60 text-xs">Meals Served</div>
                     </div>
                   </div>

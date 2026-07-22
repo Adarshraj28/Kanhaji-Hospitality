@@ -69,7 +69,7 @@ export default function AboutPage() {
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
                 Over the past {new Date().getFullYear() - COMPANY.founded}+ years, we have
-                served over {STATS.find((s) => s.label === "Total Meals Served")?.value || "15Cr+"} meals
+                served over {STATS.find((s) => s.label === "Total Meals Served")?.value || "15Lakh+"} meals
                 across 10+ cities, partnering with 50+ institutions including
                 schools, hospitals, corporate offices, and government
                 organizations.

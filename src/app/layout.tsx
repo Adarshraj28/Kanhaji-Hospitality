@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Kanhaji Hospitality",
   },
   description:
-    "India's trusted partner for food management. Professional mess services, hospital catering, corporate canteens, and school meal programs. FSSAI certified, 200+ clients, 25+ cities.",
+    "India's trusted partner for professional hospitality and catering services. Corporate catering, guest house management, central kitchen operations, buffet catering, and retail dining solutions. FSSAI certified, 50+ trusted partners, 10+ cities.",
   keywords: [
     "institutional catering",
     "mess management",
