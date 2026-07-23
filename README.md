@@ -9,20 +9,7 @@ Professional institutional food management services across India. Specializing i
 - **Fonts:** Inter + Plus Jakarta Sans
 - **Icons:** Lucide React
 
-## Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-Open http://localhost:3000
-
-## Build
-
-```bash
-npm run build
-```
+Open https://kanhaji-hospitality.vercel.app/
 
 ## Project Structure
 
